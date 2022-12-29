@@ -2,3 +2,7 @@ To Do
 * Customization
 * Popup to search by clicking icon in browser
 * Show search results when there are no more bookmarks
+* Allow switch to Particles Newtab
+* More advanced search system - not only contains, but also wildcards in between every character
+
+Last update: 12-29-2022
