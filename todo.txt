@@ -1,0 +1,4 @@
+To Do
+* Customization
+* Popup to search by clicking icon in browser
+* Show search results when there are no more bookmarks
