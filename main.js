@@ -1,8 +1,3 @@
-function submitForm() {
-    if (document.getElementById('query').value.trim() !== '') {
-        window.location.replace('https://www.google.com/search?q=' + encodeURIComponent(document.getElementById('query').value));
-    }
-}
 function process_bookmark(bookmarks) {
     for (var i = 0; i < bookmarks.length; i++) {
         var bookmark = bookmarks[i];
@@ -25,10 +20,6 @@ function process_bookmark(bookmarks) {
 
 
 window.onload = function () {
-    document.getElementById('form').onsubmit = function(e) {
-        e.preventDefault();
-        submitForm();
-    }
     function formatAMPM(date) {
         var hours = date.getHours();
         var greeting = '';
