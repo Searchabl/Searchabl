@@ -5,11 +5,30 @@ function process_bookmark(bookmarks) {
             console.log("bookmark: " + bookmark.title + " ~ " + bookmark.url);
             var ul = document.getElementById('searchlist');
             var el = document.createElement('li')
+            el.classList.add('item');
             var ael = document.createElement('a');
+            ael.classList.add('itemlink');
+            var titlep = document.createElement('p');
+            var title = document.createElement('b');
+            titlep.appendChild(title);
+            title.classList.add('title');
+            title.innerText = bookmark.title;
+            var urlp = document.createElement('p');
+            var url = document.createElement('small');
+            url.classList.add('url');
+            url.innerText = bookmark.url;
+            urlp.appendChild(url);
+            ael.appendChild(titlep);
+            ael.appendChild(urlp);
             ael.href = bookmark.url;
-            ael.innerText = bookmark.title;
             el.appendChild(ael);
             ul.appendChild(el);
+            /*<li class="item">
+            <a href="#" class="itemlink">
+                <p><b class="title">Test</b></p>
+                <p><small class="url">Test</small></p>
+            </a>
+        </li>*/
         }
 
         if (bookmark.children) {
