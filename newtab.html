@@ -36,13 +36,26 @@
         }
         .item {
             background: #F4F4F4;
-            padding: 10px 25px;
+            padding: 0;
+            overflow: hidden;
             border-radius: 5px;
             margin-bottom: 15px;
         }
+        .item img {
+            display: inline-block;
+            height: 75px;
+        }
+        .urlcontainer {
+            display: inline-block;
+            flex-grow: 1;
+            padding: 10px 25px;
+            align-self: center;
+        }
+        
         .itemlink {
             color: black;
             text-decoration: none;
+            display: flex;
         }
         .itemlink p {
             margin: 0;
@@ -86,7 +99,8 @@
         <h2 id="greeting">Hello</h2>
     </div>
     <input type="text" id="searchinput" autofocus placeholder="Search your Bookmarks">
-    <ul id="searchlist"></ul>
+    <ul id="searchlist">
+    </ul>
     <script src="main.js"></script>
 </body>
 

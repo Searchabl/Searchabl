@@ -2,7 +2,6 @@ function process_bookmark(bookmarks) {
     for (var i = 0; i < bookmarks.length; i++) {
         var bookmark = bookmarks[i];
         if (bookmark.url) {
-            console.log("bookmark: " + bookmark.title + " ~ " + bookmark.url);
             var ul = document.getElementById('searchlist');
             var el = document.createElement('li')
             el.classList.add('item');
@@ -15,20 +14,20 @@ function process_bookmark(bookmarks) {
             title.innerText = bookmark.title;
             var urlp = document.createElement('p');
             var url = document.createElement('small');
+            var img = document.createElement('img');
+            img.src = 'https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=' + encodeURIComponent(bookmark.url) + '&size=512';
+            var urlContainer = document.createElement('div');
             url.classList.add('url');
             url.innerText = bookmark.url;
             urlp.appendChild(url);
-            ael.appendChild(titlep);
-            ael.appendChild(urlp);
+            ael.appendChild(img);
+            urlContainer.appendChild(titlep);
+            urlContainer.appendChild(urlp);
+            urlContainer.classList.add('urlcontainer');
+            ael.appendChild(urlContainer);
             ael.href = bookmark.url;
             el.appendChild(ael);
             ul.appendChild(el);
-            /*<li class="item">
-            <a href="#" class="itemlink">
-                <p><b class="title">Test</b></p>
-                <p><small class="url">Test</small></p>
-            </a>
-        </li>*/
         }
 
         if (bookmark.children) {
@@ -69,7 +68,9 @@ window.onload = function () {
     chrome.bookmarks.getTree(process_bookmark);
     var input = document.getElementById('searchinput');
     var ul = document.getElementById('searchlist');
+    var results = 0;
     input.oninput = function () {
+        results = 0;
         var filter = input.value.toUpperCase();
         var li = ul.getElementsByTagName('li');
         for (i = 0; i < li.length; i++) {
@@ -77,9 +78,12 @@ window.onload = function () {
             txtValue = a.textContent || a.innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
                 li[i].style.display = '';
+
             } else {
                 li[i].style.display = 'none';
+
             }
         }
+
     }
 }
