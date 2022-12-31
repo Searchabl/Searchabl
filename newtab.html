@@ -17,12 +17,12 @@
             height: 100%;
             width: 100%;
             overflow: hidden;
-            background: url('wallpaper.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
         body {
+            animation: fadein 1s linear;
             overflow: auto;
             height: 100%;
             width: 100%;
@@ -35,11 +35,17 @@
             padding: 0;
         }
         .item {
-            background: #F4F4F4;
+            background: white;
             padding: 0;
             overflow: hidden;
             border-radius: 5px;
             margin-bottom: 15px;
+        }
+        .item:hover {
+            background: #F4F4F4;
+        }
+        .item:active {
+            background: #E9E9E9;
         }
         .item img {
             display: inline-block;
@@ -90,17 +96,105 @@
             margin-bottom: 25px;
             display: inline-block;
         }
+        .settings {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            cursor: pointer;
+            color: white;
+        }
+        .settings:hover {
+            color: #E9E9E9;
+        }
+        .settingsModal {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 11, 0.1), 0 0px 0 1px rgba(10, 10, 10, 0.02);
+            position: fixed;
+            padding: 10px 25px;
+            width: 75%;
+            top: 15px;
+            z-index: 9999;
+            border-radius: 5px;
+            right: 12.5%;
+            display: none;
+            left: 12.5%;
+        }
+        .settingsBackdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 99;
+            display: none;
+        }
+        #closebtn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+        }
+        .imglist img {
+            height: 100px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .imglist img.selected {
+            filter: brightness(0.5);
+            cursor: default;
+        }
+        #reset {
+            padding: 10px 25px;
+            border: 0;
+            background: white;
+            font-size: 11pt;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #reset:hover {
+            background: #F4F4F4;
+        }
+        #reset:active {
+            background: #E3E3E3;
+        }
+        @keyframes fadein {
+            0%, 25% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 100%;
+            }
+        }
     </style>
 </head>
-
 <body>
+    <div class="settingsModal" id="settingsModal">
+        <div class="closebtn" id="closebtn"><svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M24 26.1 13.5 36.6q-.45.45-1.05.45-.6 0-1.05-.45-.45-.45-.45-1.05 0-.6.45-1.05L21.9 24 11.4 13.5q-.45-.45-.45-1.05 0-.6.45-1.05.45-.45 1.05-.45.6 0 1.05.45L24 21.9l10.5-10.5q.45-.45 1.05-.45.6 0 1.05.45.45.45.45 1.05 0 .6-.45 1.05L26.1 24l10.5 10.5q.45.45.45 1.05 0 .6-.45 1.05-.45.45-1.05.45-.6 0-1.05-.45Z"/></svg></div>
+        <h1>Preferences</h1>
+        <h2>Background Image</h2>
+        <div class="imglist">
+            <img src="wallpaper.jpg" id="image1">
+            <img src="beach.jpg" id="image2">
+            <img src="bridge.jpg" id="image3">
+            <img src="river.jpg" id="image4">
+        </div>
+        <button id="reset">Reset Preferences</button>
+    </div>
+    <div class="settingsBackdrop" id="settingsBackdrop"></div>
     <div class="widget">
         <h1 id="clock">00:00 AM</h1>
-        <h2 id="greeting">Hello</h2>
+        <h2 id="greeting">Hello!</h2>
     </div>
     <input type="text" id="searchinput" autofocus placeholder="Search your Bookmarks">
     <ul id="searchlist">
     </ul>
+    <div class="settings" id="settingsbtn">
+        <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" fill="currentColor"><path d="M27.3 44h-6.6q-.55 0-.975-.35-.425-.35-.525-.9l-.8-5.05q-.95-.35-2-.95t-1.85-1.25L9.9 37.65q-.55.25-1.1.075T7.95 37l-3.3-5.85q-.3-.5-.15-1.05t.6-.9l4.3-3.15q-.1-.45-.125-1.025Q9.25 24.45 9.25 24q0-.45.025-1.025T9.4 21.95L5.1 18.8q-.45-.35-.6-.9-.15-.55.15-1.05L7.95 11q.3-.55.85-.725.55-.175 1.1.075l4.65 2.15q.8-.65 1.85-1.25t2-.9l.8-5.1q.1-.55.525-.9Q20.15 4 20.7 4h6.6q.55 0 .975.35.425.35.525.9l.8 5.05q.95.35 2.025.925Q32.7 11.8 33.45 12.5l4.65-2.15q.55-.25 1.1-.075t.85.725l3.3 5.8q.3.5.175 1.075t-.625.925l-4.3 3.05q.1.5.125 1.075.025.575.025 1.075t-.025 1.05q-.025.55-.125 1.05l4.3 3.1q.45.35.6.9.15.55-.15 1.05L40.05 37q-.3.55-.85.725-.55.175-1.1-.075l-4.65-2.15q-.8.65-1.825 1.275-1.025.625-2.025.925l-.8 5.05q-.1.55-.525.9-.425.35-.975.35ZM24 30.5q2.7 0 4.6-1.9 1.9-1.9 1.9-4.6 0-2.7-1.9-4.6-1.9-1.9-4.6-1.9-2.7 0-4.6 1.9-1.9 1.9-1.9 4.6 0 2.7 1.9 4.6 1.9 1.9 4.6 1.9Zm0-3q-1.45 0-2.475-1.025Q20.5 25.45 20.5 24q0-1.45 1.025-2.475Q22.55 20.5 24 20.5q1.45 0 2.475 1.025Q27.5 22.55 27.5 24q0 1.45-1.025 2.475Q25.45 27.5 24 27.5Zm0-3.5Zm-2.2 17h4.4l.7-5.6q1.65-.4 3.125-1.25T32.7 32.1l5.3 2.3 2-3.6-4.7-3.45q.2-.85.325-1.675.125-.825.125-1.675 0-.85-.1-1.675-.1-.825-.35-1.675L40 17.2l-2-3.6-5.3 2.3q-1.15-1.3-2.6-2.175-1.45-.875-3.2-1.125L26.2 7h-4.4l-.7 5.6q-1.7.35-3.175 1.2-1.475.85-2.625 2.1L10 13.6l-2 3.6 4.7 3.45q-.2.85-.325 1.675-.125.825-.125 1.675 0 .85.125 1.675.125.825.325 1.675L8 30.8l2 3.6 5.3-2.3q1.2 1.2 2.675 2.05Q19.45 35 21.1 35.4Z"/></svg>
+    </div>
     <script src="main.js"></script>
 </body>
 

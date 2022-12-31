@@ -1,3 +1,10 @@
+function unselectall() {
+    document.getElementById('image1').classList.remove('selected');
+    document.getElementById('image2').classList.remove('selected');
+    document.getElementById('image3').classList.remove('selected');
+    document.getElementById('image4').classList.remove('selected');
+}
+
 function process_bookmark(bookmarks) {
     for (var i = 0; i < bookmarks.length; i++) {
         var bookmark = bookmarks[i];
@@ -86,4 +93,79 @@ window.onload = function () {
         }
 
     }
+
+    document.getElementById('image1').onclick = function () {
+        unselectall();
+        document.getElementById('image1').classList.add('selected');
+        document.querySelector('html').style.backgroundImage = 'url("wallpaper.jpg")';
+        chrome.storage.sync.set({
+            "background": 1
+        });
+    }
+    document.getElementById('image2').onclick = function () {
+        unselectall();
+        document.getElementById('image2').classList.add('selected');
+        document.querySelector('html').style.backgroundImage = 'url("beach.jpg")';
+        chrome.storage.sync.set({
+            "background": 2
+        });
+    }
+    document.getElementById('image3').onclick = function () {
+        unselectall();
+        document.getElementById('image3').classList.add('selected');
+        document.querySelector('html').style.backgroundImage = 'url("bridge.jpg")';
+        chrome.storage.sync.set({
+            "background": 3
+        });
+    }
+    document.getElementById('image4').onclick = function () {
+        unselectall();
+        document.getElementById('image4').classList.add('selected');
+        document.querySelector('html').style.backgroundImage = 'url("river.jpg")';
+        chrome.storage.sync.set({
+            "background": 4
+        });
+    }
+    document.getElementById('settingsbtn').onclick = function () {
+        document.getElementById('settingsModal').style.display = 'block';
+        document.getElementById('settingsBackdrop').style.display = 'block';
+    }
+    document.getElementById('reset').onclick = function () {
+        chrome.storage.sync.clear();
+        window.location.reload();
+    }
+    document.getElementById('closebtn').onclick = function () {
+        document.getElementById('settingsModal').style.display = 'none';
+        document.getElementById('settingsBackdrop').style.display = 'none';
+    }
+    document.getElementById('settingsBackdrop').onclick = function () {
+        document.getElementById('settingsModal').style.display = 'none';
+        document.getElementById('settingsBackdrop').style.display = 'none';
+    }
 }
+chrome.storage.sync.get('background', function (obj) {
+    if (obj.background == 1) {
+        document.querySelector('html').style.backgroundImage = 'url("wallpaper.jpg")';
+        unselectall();
+        document.getElementById('image1').classList.add('selected');
+    } else if (obj.background == 2) {
+        document.querySelector('html').style.backgroundImage = 'url("beach.jpg")';
+        unselectall();
+        document.getElementById('image2').classList.add('selected');
+    } else if (obj.background == 3) {
+        document.querySelector('html').style.backgroundImage = 'url("bridge.jpg")';
+        unselectall();
+        document.getElementById('image3').classList.add('selected');
+    } else if (obj.background == 4) {
+        document.querySelector('html').style.backgroundImage = 'url("river.jpg")';
+        unselectall();
+        document.getElementById('image4').classList.add('selected');
+    } else {
+        console.warn('Background ' + obj.background + ' does not exist! Setting to 1');
+        document.querySelector('html').style.backgroundImage = 'url("wallpaper.jpg")';
+        chrome.storage.sync.set({
+            "background": 1
+        });
+        document.getElementById('image1').classList.add('selected');
+    }
+});

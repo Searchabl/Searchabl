@@ -1,7 +1,7 @@
 {
-    "name": "Searchabl: Bookmark Manager for Chrome",
+    "name": "Searchabl: Bookmark Manager and New Tab Page",
     "description": "Stop wasting hours finding the right bookmark. Instead, try Searchabl, the best bookmark manager for Chrome!",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "manifest_version": 3,
     "permissions": [
         "bookmarks",
