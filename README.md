@@ -24,6 +24,6 @@ The Chrome Webstore link will be available soon.
 
 ## License
 
-&copy; 2022 mrfakename. All rights reserved.
+See LICENSE file.
 
-Closed source license.
+&copy; 2022 mrfakename. All rights reserved.
